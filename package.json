@@ -1,0 +1,17 @@
+{
+  "name": "nyc-stdin-instrumenter",
+  "version": "0.0.1",
+  "description": "Instrument code from stdin with nyc",
+  "bin": "./bin/nyc-stdin-instrumenter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nyc"
+  ],
+  "author": "Yoann Lecuyer",
+  "license": "MIT",
+  "dependencies": {
+    "istanbul-lib-instrument": "^5.2.1"
+  }
+}
