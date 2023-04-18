@@ -1,6 +1,6 @@
 {
   "name": "nyc-stdin-instrumenter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Instrument code from stdin with nyc",
   "bin": "./bin/nyc-stdin-instrumenter.js",
   "scripts": {
