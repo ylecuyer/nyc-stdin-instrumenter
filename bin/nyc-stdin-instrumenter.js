@@ -1,15 +1,37 @@
 #!/usr/bin/env node
 
-var { createInstrumenter } = require('istanbul-lib-instrument')
-var fs = require('fs')
+const getInputData = () => {
+  return new Promise((resolve, reject) => {
+    let inputData = '';
 
-var data = fs.readFileSync(0, 'utf-8')
+    process.stdin.on('data', (chunk) => {
+      inputData += chunk;
+    });
 
-var instrumenter = createInstrumenter({
-  esModules: false
-})
+    process.stdin.on('end', () => {
+      resolve(inputData);
+    });
 
-// argv[2] is the path of the file
-output = instrumenter.instrumentSync(data, process.argv[2])
+    process.stdin.on('error', (err) => {
+      reject(err);
+    });
+  });
+};
 
-console.log(output)
+const handleInput = async () => {
+  var { createInstrumenter } = require('istanbul-lib-instrument')
+  var fs = require('fs')
+
+  const data = await getInputData();
+
+  var instrumenter = createInstrumenter({
+    esModules: false
+  })
+
+  // argv[2] is the path of the file
+  output = instrumenter.instrumentSync(data, process.argv[2])
+
+  console.log(output)
+};
+
+handleInput();
